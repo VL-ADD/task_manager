@@ -1,0 +1,43 @@
+﻿<Window x:Class="TestTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestTask"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
+        Title="Tst Task" Height="450" Width="800">
+    <DockPanel LastChildFill="True" >
+        <TextBlock Name="persent" Width=" 100" Height=" 20" DockPanel.Dock="Top" HorizontalAlignment="Left"></TextBlock>
+        <Button DockPanel.Dock="Top" HorizontalAlignment="Right" Name="OnlyButton" Width="120" Height="20" Content="Обновить" Click="Only_button_click"></Button>
+        <Grid Background="Aquamarine" Name="ListGrid">
+            <ListView Name="ProcList"  ItemsSource="{Binding Processes}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="35" Header="Icon">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image x:Name="ImIcon" Source="{ Binding IsAsync=True, Path=ProcessIconFile, AsyncState=False}" Width="25" Height="25"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ProcessShortName}" Width="100">Name</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ProcessId}" Width="100">PID</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ProcessFullName}" Width="100">Full Name</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ProcessBits}" Width="100"> Digit capacity</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ProcessUserName}" Width="100">User</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ProcessComandLine}" Width="100">Comand Line</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ProcessIsSign}" Width="100">Signature</GridViewColumn>
+                        
+                    </GridView>
+                </ListView.View>
+                <ListView.Resources>
+                    <col:ArrayList x:Key="Processes">
+                       
+                    </col:ArrayList>
+                </ListView.Resources>
+            </ListView>
+        </Grid>
+    </DockPanel>
+</Window>
